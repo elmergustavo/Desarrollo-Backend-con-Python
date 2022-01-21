@@ -450,6 +450,9 @@ Como pudimos observar, Python implementa los bucles definidos mediante los bucle
 
 [Volver a tabla de contenidos](#introducción-al-pensamiento-computacional-con-python)
 
+![](https://files.realpython.com/media/t.ba63222d63f5.png)
+
+
 ## Modulo 3 Programas numéricos
 
 ### Clase 11 Representación de flotantes

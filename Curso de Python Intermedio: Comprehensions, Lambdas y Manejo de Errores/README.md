@@ -105,28 +105,34 @@ sudo apt-get install python3-venv
 Básicamente, pip es como el npm de JavaScript, y el archivo requeriments.txt es como el package.json de JavaScript.
 .
 Es importante recordar que esto se debe correr con el entorno virtual activado (avenv), de esta manera todas las dependencias que instalemos se guardaran para este entorno virtual (de lo contrario se guardarían de manera global, que es justo lo que no queremos).
-.
+
 Algo importante, si estás manejando git, es bueno siempre ignorar la carpeta venv, esto porque realmente no nos importa subir todo eso al repositorio, puedes mirarlo como que venv es el node_modules de JavaScript, a fin de cuentas, cualquier otro programador que trabaje con nuestro código creará su propio entorno virtual e instalará las dependencias que dejamos en nuestro requeriments.txt.
-.
+
 Y un dato curioso es que, el operador > en la terminal es algo especial de UNIX, ya que este operador lo que hace es redirigir la salida de cualquier comando hacia donde lo mandes, por defecto la salida es en la terminal, pero al usar > le dijimos a la terminal que, en lugar de que la salida sea en la terminal, que se redirija al archivo requeriments.txt 👀. Si quieren jugar con ello, pueden hacerlo con este ejemplo: ls -al > test.txt, eso creará un archivo llamado test.txt, y si lo abren verán cómo es que ese comando funciona 😄
 
 Resumen
-|
+
 Pip (package installer for python) Nos permite descargar paquetes de terceros para utilizarlos en nuestro enviroment, ademas se puede definir una versión especifica del paquete.
-|
+
 
 pip install <paquete> instala el paquete(pandas , matplotlib, bokeh, etc) que se especifique
 
 pip freeze muestra todos los paquetes instalados en tu ambiente virtual
 
-|
+
 Si quisiéramos que alguien mas pueda ejecutar nuestro proyecto es importante compartir que librería y versión hemos empleado; eso se realiza con el comando:
     
 pip freeze > requirements.txt
 El resultado de pip freeze se escribe en requirements.txt (puedes usar otro nombre pero el mostrado es una buena practica)
-|
+
 para instalar paquetes desde un archivo como requirements.txt ejecutamos:
 
-pip install -r requirements.txt 
+```pip install -r requirements.txt```
+    
+## Listas y diccionarios anidados
+![](https://static.platzi.com/media/user_upload/code-a45e30d1-b20b-47cd-b3ab-d6a8efabeffb.jpg)
+![](https://static.platzi.com/media/user_upload/carbon-a5a5b903-f318-45c6-926d-7d08ab4f481f.jpg)
+![](https://static.platzi.com/media/user_upload/Curso%20de%20Python%20Intermedio-3-2a7a270f-1b99-46c9-9123-b876f6c580c2.jpg)
 
+    
 

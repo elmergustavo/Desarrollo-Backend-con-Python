@@ -34,4 +34,22 @@ El Zen de Python se compone por los principios para escribir tu código de maner
     **Los espacios de nombres son una gran idea, ¡Tengamos más de esos! (namespaces):
     Es el nombre que se ha indicado luego de la palabra import, es decir la ruta (namespace) del módulo. (Lo veremos a profundidad más adelante).
 
+## ¿Qué es un entorno virtual?
+* https://docs.python.org/es/3/tutorial/venv.html
+
+Resumiendo lo que dice la documentación de Python sobre Entornos Virtuales
+.
+Un entorno virtual es un directorio que contiene una instalación de Python de una versión en particular, además de unos cuantos paquetes adicionales.
+.
+Ejemplo:
+La aplicación A puede tener su propio entorno virtual con la versión 1.0 instalada mientras que la aplicación B tiene otro entorno virtual con la versión 2.0. Si la aplicación B requiere que actualizar la librería a la versión 3.0, ésto no afectará el entorno virtual de la aplicación A.
+
+Los entornos virtuales son de mucha utilidad ya que nos ayudan a tener versiones especificas de librerías o módulos a un proyecto sin afectar a otros. De esta forma en el mismo equipo pueden coexistir distintos proyectos con distintas versiones de la misma librería o modulo.
+
+![](https://static.platzi.com/media/user_upload/Screenshot%20from%202021-04-06%2015-17-31-98f9a6fa-3e6c-4353-9644-31a4e7208737.jpg)
+![](https://static.platzi.com/media/user_upload/Screenshot%20from%202021-04-06%2015-10-22-1804c0b6-79d2-40bd-aced-f859f86c5309.jpg)
+
+## El primer paso profesional: creación de un entorno virtual
+
+
 

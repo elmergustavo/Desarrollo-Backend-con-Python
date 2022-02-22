@@ -50,6 +50,83 @@ Los entornos virtuales son de mucha utilidad ya que nos ayudan a tener versiones
 ![](https://static.platzi.com/media/user_upload/Screenshot%20from%202021-04-06%2015-10-22-1804c0b6-79d2-40bd-aced-f859f86c5309.jpg)
 
 ## El primer paso profesional: creación de un entorno virtual
+* https://docs.python.org/es/3/tutorial/venv.html
 
+Creando un ambiente virtual con VENV
+Creación de ambiente Virtual:
+
+python3 -m venv nombre_venv
+
+Usualmente el nombre del ambiente virtual es venv.
+Activación del ambiente virtual:
+
+Windows:
+.\venv\Scripts\activate
+
+Unix o MacOS:
+source venv/bin/activate
+
+Desactivar el ambiente virtual:
+
+deactivate
+
+Crear un alias en linux/mac:
+
+alias nombre-alias="comando"
+
+`alias avenv=“source venv/bin/activate”``
+
+Clase del curso de Git y Github 👩🏽‍💻
+
+Aquí les dejo los pasos para crear un alias en Linux Ubuntu:
+.
+Para hacerlo en este sistema operativo, necesitamos que cada que la terminal cargue, el alias sea leído, para ello, la terminal tiene un archivo llamado .bashrc que contiene la configuración inicial, y usualmente se encuentra en nuestro home, por lo que hacemos lo siguiente:
+.
+
+Ejecutar sudo nano ~/.bashrc
+Ir al final del archivo
+Agregar el comando: alias avenv='source venv/bin/activate'
+Guardar presionando ctrl + o y luego salir con ctrl + x
+Reejecutar la configuración de la terminal: source ~/.bashrc
+Activar el entorno vitual avenv
+`
+## para linux
+sudo apt-get install python3-venv
+
+## sudo apt-get install python3-venv
+
+## Instalación de dependencias con pip
+
+* https://pypi.org/project/pipenv/
+* https://github.com/pyenv/pyenv
+* https://platzi.com/cursos/web-scraping/
+* https://platzi.com/cursos/pandas/
+
+Básicamente, pip es como el npm de JavaScript, y el archivo requeriments.txt es como el package.json de JavaScript.
+.
+Es importante recordar que esto se debe correr con el entorno virtual activado (avenv), de esta manera todas las dependencias que instalemos se guardaran para este entorno virtual (de lo contrario se guardarían de manera global, que es justo lo que no queremos).
+.
+Algo importante, si estás manejando git, es bueno siempre ignorar la carpeta venv, esto porque realmente no nos importa subir todo eso al repositorio, puedes mirarlo como que venv es el node_modules de JavaScript, a fin de cuentas, cualquier otro programador que trabaje con nuestro código creará su propio entorno virtual e instalará las dependencias que dejamos en nuestro requeriments.txt.
+.
+Y un dato curioso es que, el operador > en la terminal es algo especial de UNIX, ya que este operador lo que hace es redirigir la salida de cualquier comando hacia donde lo mandes, por defecto la salida es en la terminal, pero al usar > le dijimos a la terminal que, en lugar de que la salida sea en la terminal, que se redirija al archivo requeriments.txt 👀. Si quieren jugar con ello, pueden hacerlo con este ejemplo: ls -al > test.txt, eso creará un archivo llamado test.txt, y si lo abren verán cómo es que ese comando funciona 😄
+
+Resumen
+|
+Pip (package installer for python) Nos permite descargar paquetes de terceros para utilizarlos en nuestro enviroment, ademas se puede definir una versión especifica del paquete.
+|
+
+pip install <paquete> instala el paquete(pandas , matplotlib, bokeh, etc) que se especifique
+
+pip freeze muestra todos los paquetes instalados en tu ambiente virtual
+
+|
+Si quisiéramos que alguien mas pueda ejecutar nuestro proyecto es importante compartir que librería y versión hemos empleado; eso se realiza con el comando:
+    
+pip freeze > requirements.txt
+El resultado de pip freeze se escribe en requirements.txt (puedes usar otro nombre pero el mostrado es una buena practica)
+|
+para instalar paquetes desde un archivo como requirements.txt ejecutamos:
+
+pip install -r requirements.txt 
 
 

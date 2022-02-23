@@ -74,14 +74,12 @@ Crear un alias en linux/mac:
 
 alias nombre-alias="comando"
 
-`alias avenv=“source venv/bin/activate”``
+``alias avenv=“source venv/bin/activate”``
 
 Clase del curso de Git y Github 👩🏽‍💻
 
 Aquí les dejo los pasos para crear un alias en Linux Ubuntu:
-.
 Para hacerlo en este sistema operativo, necesitamos que cada que la terminal cargue, el alias sea leído, para ello, la terminal tiene un archivo llamado .bashrc que contiene la configuración inicial, y usualmente se encuentra en nuestro home, por lo que hacemos lo siguiente:
-.
 
 Ejecutar sudo nano ~/.bashrc
 Ir al final del archivo
@@ -91,6 +89,7 @@ Reejecutar la configuración de la terminal: source ~/.bashrc
 Activar el entorno vitual avenv
 `
 ## para linux
+
 sudo apt-get install python3-venv
 
 ## sudo apt-get install python3-venv
@@ -102,16 +101,13 @@ sudo apt-get install python3-venv
 * https://platzi.com/cursos/web-scraping/
 * https://platzi.com/cursos/pandas/
 
+```
+
 Básicamente, pip es como el npm de JavaScript, y el archivo requeriments.txt es como el package.json de JavaScript.
-.
 Es importante recordar que esto se debe correr con el entorno virtual activado (avenv), de esta manera todas las dependencias que instalemos se guardaran para este entorno virtual (de lo contrario se guardarían de manera global, que es justo lo que no queremos).
-
 Algo importante, si estás manejando git, es bueno siempre ignorar la carpeta venv, esto porque realmente no nos importa subir todo eso al repositorio, puedes mirarlo como que venv es el node_modules de JavaScript, a fin de cuentas, cualquier otro programador que trabaje con nuestro código creará su propio entorno virtual e instalará las dependencias que dejamos en nuestro requeriments.txt.
-
 Y un dato curioso es que, el operador > en la terminal es algo especial de UNIX, ya que este operador lo que hace es redirigir la salida de cualquier comando hacia donde lo mandes, por defecto la salida es en la terminal, pero al usar > le dijimos a la terminal que, en lugar de que la salida sea en la terminal, que se redirija al archivo requeriments.txt 👀. Si quieren jugar con ello, pueden hacerlo con este ejemplo: ls -al > test.txt, eso creará un archivo llamado test.txt, y si lo abren verán cómo es que ese comando funciona 😄
-
 Resumen
-
 Pip (package installer for python) Nos permite descargar paquetes de terceros para utilizarlos en nuestro enviroment, ademas se puede definir una versión especifica del paquete.
 
 
@@ -125,6 +121,7 @@ Si quisiéramos que alguien mas pueda ejecutar nuestro proyecto es importante co
 pip freeze > requirements.txt
 El resultado de pip freeze se escribe en requirements.txt (puedes usar otro nombre pero el mostrado es una buena practica)
 
+```
 para instalar paquetes desde un archivo como requirements.txt ejecutamos:
 
 ```pip install -r requirements.txt```
@@ -134,5 +131,120 @@ para instalar paquetes desde un archivo como requirements.txt ejecutamos:
 ![](https://static.platzi.com/media/user_upload/carbon-a5a5b903-f318-45c6-926d-7d08ab4f481f.jpg)
 ![](https://static.platzi.com/media/user_upload/Curso%20de%20Python%20Intermedio-3-2a7a270f-1b99-46c9-9123-b876f6c580c2.jpg)
 
+## Dictionary comprehensions
+```py
+    def run():
+
+    my_dict = {i : round(i**0.5,2) for i in  range(1,1001)}
+
+    print(my_dict)
+
+if __name__=='__main__':
+    run()
+```
+
+* https://docs.python.org/3/tutorial/controlflow.html?highlight=lambda#lambda-expressions
+![](https://static.platzi.com/media/user_upload/lambda.png-c06b5ab0-03d2-42c2-a442-19559fee74d6.jpg)
+
+## High order functions: filter, map y reduce
+La diferencia entre filter y map:
+
+filter devuelve True or False según el valor esté dentro de los criterios buscados o no. En caso de que no cumpla con la condición, no será devuelto y la lista se verá reducida por este filtro.
+Map funciona muy parecido, pero su diferencia radica en que no puede eliminar valores de la lista del array entregado. Es decir, el output tiene la misma cantidad de valores que el input.
+Cómo funciona reduce:
+
+Reduce toma 2 valores entregados como parámetros y el iterador como otro parámetro. Realiza la función con estos 2 valores, y luego con el resultado de esto y el valor que le sigue en el array. Y así hasta pasar por todos los valores de la lista.
+
+```py
+from functools import reduce
+def main():
+
+    #Filter
+    myList = [1,4,5,7,9,13,19,21]
+
+    odd = list(filter(lambda x: x % 2 != 0, myList))
+    print(odd)
+
+    #Map
+    myList2 = [1, 2, 3, 4, 5]
+
+    squares = list(map(lambda x: x**2, myList2))
+    print(squares)
+
+    myList3 = [2, 2, 2, 2, 2]
     
+    allMultiplied = reduce(lambda a, b: a * b, myList3)
+    print(allMultiplied)
+
+if __name__ == '__main__':
+    main()
+```
+ * https://www.youtube.com/watch?v=hUes6y2b--0
+
+
+```py
+"""
+Dada una lista de numeros filtra para quedarte solo con 
+los números impares
+"""
+
+my_list = [i for i in range(10)]
+
+# Usando def
+def get_odds(arr):
+    odds = []
+    for n in arr:
+        if n % 2 == 1:
+            odds.append(n)
+    return odds
+
+# Usando List Comprehension
+odds = [n for n in my_list if n % 2 == 1]
+
+# Usando Filter
+odds_filter = list(filter(lambda n: n % 2 == 1, my_list))
+print(odds_filter)
+```
+Map
+Funciona muy parecido, pero su diferencia radica en que no puede eliminar valores de la lista del array entregado. Es decir, el output tiene la misma cantidad de valores que el input.
+```py
+"""
+Obtener todos los numeros de una lista multiplicados al cuadrado
+"""
+
+# Usando Def
+def get_squares(arr):
+    squares = []
+    for n in arr:
+        squares.append(n * n)
+    return squares
+
+# Usando List Comprehension
+squares = [n * n for n in my_list]
+
+# Usando Map
+squares_map = list(map(lambda x: x*x, my_list))
+print(squares_map)
+```
+Reduce
+Toma 2 valores entregados como parámetros y el iterador como otro parámetro. Realiza la función con estos 2 valores, y luego con el resultado de esto y el valor que le sigue en el array. Y así hasta pasar por todos los valores de la lista.
+```py
+"""
+Suma todos los valores de una lista
+"""
+from functools import reduce
+
+# Usando def
+def get_sum(arr):
+    result = 0
+    for n inarr:
+        result += n
+    return result
+
+# Usando Reduce
+sum = reduce(lambda a, b: a + b, my_list)
+print(sum)
+```
+
+* https://taverasmisael.com/blog/usar-map-filter-y-reduce-para-olvidarnos-de-los-bucles-for#:~:text=A%20diferencia%20de%20filter%2C%20map,de%20la%20transformaci%C3%B3n%20que%20apliquemos.&text=A%20map%20le%20pasamos%20una,sin%20afectar%20el%20array%20original
 

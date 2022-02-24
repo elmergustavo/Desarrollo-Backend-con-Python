@@ -306,4 +306,118 @@ Existen herramientas de debugging propias de python como el módulo pdb o los br
 
 * https://docs.python.org/3/tutorial/errors.html#exceptions
 
+Algo que aparece casi al final de la lectura recomendada en el documentación de Python es que se puede agregar un “else” al try-except.
+
+TRY: En el try se coloca código que esperamos que pueda lanzar algún error.
+EXCEPT: En el except se maneja el error, es decir, si ocurre un error dentro del bloque de código del try, se deja de ejecutar el código del try y se ejecuta lo que se haya definido en el Except.
+ELSE: El else se ejecuta sólo si no hubo ninguna excepción lanzada desde el try
+FINALLY: Se ejecuta SIEMPRE, haya sido lanzada la excepción o no haya sido lanzada.
+
+## Poniendo a prueba el manejo de excepciones
+
+* https://docs.python.org/3/tutorial/errors.html#exceptions
+
+```py
+def divisors(num):
+    divisors = []
+    for i in range(1, num + 1):
+        if num % i == 0:
+            divisors.append(i)
+    return divisors
+
+
+def run():
+    while True:
+        try:
+            num = int(input('Ingresa un número: '))
+            if num < 0:
+                raise ValueError
+            print(divisors(num))
+            print("Terminó mi programa")
+            break
+        except ValueError:
+            print("Debes ingresar un entero positivo")
+
+
+if __name__ == '__main__':
+    run()
+```
+
+```py
+<def divisor(num):
+    try:
+        if num < 0:
+            raise ValueError("ingresa un número positvo")
+        divisors =[i for i in range(1, num + 1) if num % i == 0]
+        return divisors
+    except ValueError as ve:
+        print(ve)
+        return False
+
+
+def run():
+    try: 
+        num = int(input(f'Ingresa un número: '))      
+        print(divisor(num))
+        print("termino mi programa")
+    except ValueError:
+        print("ingresa un número")
+    
+if __name__ =='__main__':
+    run()> 
+```
+
+```py
+def divisors(num):
+    try:
+        if num < 0:
+            raise ValueError('Ingresa solo números positivos')
+        else:
+            divisors = [i for i in range(1, num + 1) if num % i == 0]
+            return divisors
+    except ValueError as value_error:
+        print(value_error)
+        return str(num) + " No es nu numero positivo"
+
+
+def run():
+    try:
+        num = int(input("Ingresa un número: "))
+        print(divisors(num))
+        print("Terminó mi programa")
+    except ValueError:
+        print("Debes ingresar un número")
+
+
+if __name__ == "__main__":
+    run()
+```
+## Assert statements
+
+```py
+def divisor(num):
+    divisors = [i for i in range(1,num+1) if num%i == 0]
+    return divisors
+
+def run():
+    num = input('Enter a number: ')
+    assert num.isnumeric() and int(num)>0, 'Ingresa solo numeros positivos'
+    print(divisor(int(num)))
+    print('Finish')
+
+
+if __name__ == '__main__':
+    run()
+```
+
+Assert statements
+
+Es una manera poco usual de manejar los errores en python
+Evalúa una condicional, si esta se cumple continuamos con el flujo normal del python, si no se cumple eleva un error del tipo AssertionError y nos muestra un mensaje.
+Su sintaxis es:
+
+```py
+assert <condicion>, <"mensaje">
+<código>
+```
 

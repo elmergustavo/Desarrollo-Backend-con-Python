@@ -420,4 +420,155 @@ Su sintaxis es:
 assert <condicion>, <"mensaje">
 <código>
 ```
+## Trabajando con archivos de texto en Python
 
+```py
+def read():
+    numbers = []
+    with open("./archivos/numbers.txt", "r") as f: 
+        for line in f:
+            numbers.append(int(line))
+    print(numbers)
+
+
+def write():
+    names = ["Facundo", "Gregorio", "Marta", "Susana", "Jose"]
+    with open("./archivos/names.txt", "w") as f:
+        for name in names: 
+            f.write(name)
+            f.write("\n")
+
+
+def run():
+    write()
+
+
+if __name__ == '__main__':
+    run()
+```
+![](https://static.platzi.com/media/user_upload/1-5b2d21b0-06da-4635-8b05-65c54354e1b0.jpg)
+
+```py
+def read():
+    names = []
+    with open("./archivos/name.txt", "r", encoding="utf-8") as f:
+        for line in f: 
+            if len(line.strip()) > 0:
+                names.append(line.strip())
+    if len(names)> 0:
+        print(names)
+    else:
+        print("Archivo vacio")
+
+def write():
+    names = []
+    with open("./archivos/name.txt", "w" , encoding="utf-8") as f:
+        for name in names:
+            f.write(name)
+            f.write('\n')
+
+def agregar_nombre(nombre):
+    with open("./archivos/name.txt", "a" , encoding="utf-8") as f:
+        f.write(nombre)
+        f.write("\n")
+
+def borrar_nombre(nombre):
+    names = []
+    with open("./archivos/name.txt", "r", encoding="utf-8") as f:
+        for line in f: 
+            if len(line.strip()) > 0 and line.strip()!= nombre:
+                names.append(line.strip())
+    with open("./archivos/name.txt", "w" , encoding="utf-8") as f:
+        for name in names:
+            f.write(name)
+            f.write('\n')
+
+    
+def run():
+    sw = True
+    while sw:
+        try:
+            print("""  
+----------------------------------------------------------------------
+            Seleccione un numero:
+            1. Crear un nuevo archivo 
+            2. Agregar nombre
+            3. Listar nombre
+            4. Borrar nombre
+            5. Salir del programa
+----------------------------------------------------------------------
+            """)
+            n = int(input("Ingrese una opcion :   "))
+            if n == 1:
+                write()
+            elif n == 2:
+                nombre = input("Ingrese el nombre a agregar: ")
+                agregar_nombre(nombre)
+            elif n == 3:
+                read()
+            elif n == 4:
+                nombre = input("Ingrese el nombre a borrar : ")
+                borrar_nombre(nombre)
+            elif n ==5:
+                sw = False
+                print("Programa Terminado!")
+        except ValueError :
+                print("Error seleccione una opcion correcta")
+    # write()
+
+if __name__ == '__main__':
+    run()
+```
+
+## Reto final: Juego del Ahorcado o Hangman Game
+
+```py
+import random
+import os
+
+
+def read_data(filepath="./archivos/data.txt"):
+    words = []
+    with open(filepath, "r", encoding="utf-8") as f:
+        for line in f:
+            words.append(line.strip().upper())
+    return words
+
+
+def run():
+    data = read_data(filepath="./archivos/data.txt")
+    chosen_word = random.choice(data)
+    chosen_word_list = [letter for letter in chosen_word]
+    chosen_word_list_underscores = ["_"] * len(chosen_word_list)
+    letter_index_dict = {}
+    for idx, letter in enumerate(chosen_word):
+        if not letter_index_dict.get(letter): 
+            letter_index_dict[letter] = []
+        letter_index_dict[letter].append(idx)
+    
+    while True:
+        os.system("cls") # Si estás en Unix (Mac o Linux) cambia cls por clear
+        print("¡Adivina la palabra!")
+        for element in chosen_word_list_underscores:
+            print(element + " ", end="")
+        print("\n")
+
+        letter = input("Ingresa una letra: ").strip().upper()
+        assert letter.isalpha(), "Solo puedes ingresar letras"
+
+        if letter in chosen_word_list:
+            for idx in letter_index_dict[letter]:
+                chosen_word_list_underscores[idx] = letter
+        
+        if "_" not in chosen_word_list_underscores:
+            os.system("cls") # Si estás en Unix (Mac o Linux) cambia cls por clear
+            print("¡Ganaste! La palabra era", chosen_word)
+            break
+
+
+if __name__ == '__main__':
+    run()
+
+# ¿Viendo la solución? No hay drama crack
+# Python es mejor que JavaScript
+```

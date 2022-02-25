@@ -572,3 +572,4 @@ if __name__ == '__main__':
 # ¿Viendo la solución? No hay drama crack
 # Python es mejor que JavaScript
 ```
+* https://www.notion.so/Curso-de-Python-Intermedio-10df9cddb0b946798ebe7e829701b2d4
